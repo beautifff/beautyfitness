@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Блог BeautyFitness - полезные статьи о фитнесе, здоровье и тренировках">
+    <meta name="keywords" content="фитнес блог, здоровье, тренировки, питание, BeautyFitness">
+    <meta name="author" content="BeautyFitness">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://beautyfitness.com/blog">
+    <meta property="og:title" content="Блог - BeautyFitness">
+    <meta property="og:description" content="Полезные статьи о фитнесе, здоровье и тренировках">
+    <meta property="og:image" content="https://beautyfitness.com/img/blog-hero.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://beautyfitness.com/blog">
+    <meta property="twitter:title" content="Блог - BeautyFitness">
+    <meta property="twitter:description" content="Полезные статьи о фитнесе, здоровье и тренировках">
+    <meta property="twitter:image" content="https://beautyfitness.com/img/blog-hero.jpg">
+
+    <title>Блог - BeautyFitness</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header header--blog header--page">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar__content">
+                    <a href="index.html" class="navbar__logo">
+                        <span class="navbar__logo-text">Beauty</span>Fitness
+                    </a>
+                    
+                    <div class="navbar__menu" id="navbar-menu">
+                        <ul class="navbar__list">
+                            <li class="navbar__item">
+                                <a href="index.html" class="navbar__link">Главная</a>
+                            </li>
+                            <li class="navbar__item">
+                                <a href="fitness-classes.html" class="navbar__link">Фитнес классы</a>
+                            </li>
+                            <li class="navbar__item">
+                                <a href="personal-training.html" class="navbar__link">Персональные тренировки</a>
+                            </li>
+                            <li class="navbar__item">
+                                <a href="blog.html" class="navbar__link navbar__link--active">Блог</a>
+                            </li>
+                            <li class="navbar__item">
+                                <a href="locations.html" class="navbar__link">Локации</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="navbar__actions">
+                        <button class="btn btn--primary" data-modal="application-modal">Подать заявку</button>
+                        <button class="navbar__toggle" id="navbar-toggle">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="hero hero--page">
+            <div class="container">
+                <div class="hero__content">
+                    <h1 class="hero__title">
+                        <span class="hero__title-accent">Блог</span>
+                    </h1>
+                    <p class="hero__subtitle">
+                        Полезные статьи о фитнесе, здоровье и тренировках. 
+                        Советы от наших экспертов для достижения ваших целей.
+                    </p>
+                </div>
+            </div>
+            <div class="hero__background"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Blog Filter -->
+        <section class="section filter-section">
+            <div class="container">
+                <div class="filter-section__content">
+                    <div class="filter-controls">
+                        <div class="filter-group">
+                            <label class="filter-label">Категория</label>
+                            <select class="filter-select" id="category-filter">
+                                <option value="">Все категории</option>
+                                <option value="fitness">Фитнес</option>
+                                <option value="nutrition">Питание</option>
+                                <option value="health">Здоровье</option>
+                                <option value="motivation">Мотивация</option>
+                                <option value="tips">Советы</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Сортировка</label>
+                            <select class="filter-select" id="sort-filter">
+                                <option value="latest">Сначала новые</option>
+                                <option value="oldest">Сначала старые</option>
+                                <option value="popular">Популярные</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <button class="btn btn--outline" id="clear-filters">
+                                <i class="fas fa-times"></i>
+                                Сбросить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Article -->
+        <section class="section featured-section">
+            <div class="container">
+                <div class="featured-article">
+                    <div class="featured-article__image">
+                        <img src="img/21.jpg" alt="Как начать свой фитнес-путь" class="featured-article__img">
+                        <div class="featured-article__badge">Главная статья</div>
+                    </div>
+                    <div class="featured-article__content">
+                        <div class="article-meta">
+                            <span class="article-category">Фитнес</span>
+                            <span class="article-date">25 апреля 2024</span>
+                        </div>
+                        <h2 class="featured-article__title">Как начать свой фитнес-путь: полное руководство для начинающих</h2>
+                        <p class="featured-article__excerpt">
+                            Начать заниматься фитнесом может быть непросто, особенно если вы никогда раньше не тренировались. 
+                            В этой статье мы расскажем о том, как правильно начать свой путь к здоровью и красоте, 
+                            избежав типичных ошибок новичков.
+                        </p>
+                        <div class="featured-article__stats">
+                            <span class="article-stat">
+                                <i class="fas fa-eye"></i>
+                                2,847 просмотров
+                            </span>
+                            <span class="article-stat">
+                                <i class="fas fa-comments"></i>
+                                23 комментария
+                            </span>
+                            <span class="article-stat">
+                                <i class="fas fa-heart"></i>
+                                156 лайков
+                            </span>
+                        </div>
+                        <a href="#" class="btn btn--primary">
+                            <i class="fas fa-arrow-right"></i>
+                            Читать статью
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Articles -->
+        <section class="section blog-section">
+            <div class="container">
+                <div class="blog-grid" id="blog-grid">
+                    <!-- Article 1 -->
+                    <article class="blog-card" data-category="nutrition" data-date="2024-04-20">
+                        <div class="blog-card__image">
+                            <img src="img/22.jpg" alt="Правильное питание для набора мышечной массы" class="blog-card__img">
+                            <div class="blog-card__category">Питание</div>
+                        </div>
+                        <div class="blog-card__content">
+                            <div class="article-meta">
+                                <span class="article-date">20 апреля 2024</span>
+                                <span class="article-read-time">
+                                    <i class="fas fa-clock"></i>
+                                    8 мин
+                                </span>
+                            </div>
+                            <h3 class="blog-card__title">Правильное питание для набора мышечной массы</h3>
+                            <p class="blog-card__excerpt">
+                                Узнайте, как правильно питаться для эффективного набора мышечной массы. 
+                                Советы по выбору продуктов, расчету калорий и времени приема пищи.
+                            </p>
+                            <div class="blog-card__stats">
+                                <span class="article-stat">
+                                    <i class="fas fa-eye"></i>
+                                    1,234
+                                </span>
+                                <span class="article-stat">
+                                    <i class="fas fa-heart"></i>
+                                    89
+                                </span>
+                            </div>
+                            <a href="#" class="blog-card__link">
+                                Читать далее
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="blog-card" data-category="health" data-date="2024-04-18">
+                        <div class="blog-card__image">
+                            <img src="img/23.jpg" alt="Влияние сна на результаты тренировок" class="blog-card__img">
+                            <div class="blog-card__category">Здоровье</div>
+                        </div>
+                        <div class="blog-card__content">
+                            <div class="article-meta">
+                                <span class="article-date">18 апреля 2024</span>
+                                <span class="article-read-time">
+                                    <i class="fas fa-clock"></i>
+                                    6 мин
+                                </span>
+                            </div>
+                            <h3 class="blog-card__title">Влияние сна на результаты тренировок</h3>
+                            <p class="blog-card__excerpt">
+                                Качественный сон - важнейший фактор для достижения фитнес-целей. 
+                                Разбираем, как сон влияет на восстановление, рост мышц и общую производительность.
+                            </p>
+                            <div class="blog-card__stats">
+                                <span class="article-stat">
+                                    <i class="fas fa-eye"></i>
+                                    987
+                                </span>
+                                <span class="article-stat">
+                                    <i class="fas fa-heart"></i>
+                                    67
+                                </span>
+                            </div>
+                            <a href="#" class="blog-card__link">
+                                Читать далее
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="blog-card" data-category="motivation" data-date="2024-04-15">
+                        <div class="blog-card__image">
+                            <img src="img/24.jpg" alt="Как сохранить мотивацию в долгосрочной перспективе" class="blog-card__img">
+                            <div class="blog-card__category">Мотивация</div>
+                        </div>
+                        <div class="blog-card__content">
+                            <div class="article-meta">
+                                <span class="article-date">15 апреля 2024</span>
+                                <span class="article-read-time">
+                                    <i class="fas fa-clock"></i>
+                                    10 мин
+                                </span>
+                            </div>
+                            <h3 class="blog-card__title">Как сохранить мотивацию в долгосрочной перспективе</h3>
+                            <p class="blog-card__excerpt">
+                                Мотивация - ключ к успеху в фитнесе. Узнайте эффективные стратегии 
+                                для поддержания энтузиазма и достижения долгосрочных целей.
+                            </p>
+                            <div class="blog-card__stats">
+                                <span class="article-stat">
+                                    <i class="fas fa-eye"></i>
+                                    1,567
+                                </span>
+                                <span class="article-stat">
+                                    <i class="fas fa-heart"></i>
+                                    134
+                                </span>
+                            </div>
+                            <a href="#" class="blog-card__link">
+                                Читать далее
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Article 4 -->
+                    <article class="blog-card" data-category="tips" data-date="2024-04-12">
+                        <div class="blog-card__image">
+                            <img src="img/25.jpg" alt="5 ошибок новичков в тренажерном зале" class="blog-card__img">
+                            <div class="blog-card__category">Советы</div>
+                        </div>
+                        <div class="blog-card__content">
+                            <div class="article-meta">
+                                <span class="article-date">12 апреля 2024</span>
+                                <span class="article-read-time">
+                                    <i class="fas fa-clock"></i>
+                                    7 мин
+                                </span>
+                            </div>
+                            <h3 class="blog-card__title">5 ошибок новичков в тренажерном зале</h3>
+                            <p class="blog-card__excerpt">
+                                Избегайте типичных ошибок, которые совершают начинающие спортсмены. 
+                                Советы по технике безопасности и эффективности тренировок.
+                            </p>
+                            <div class="blog-card__stats">
+                                <span class="article-stat">
+                                    <i class="fas fa-eye"></i>
+                                    2,134
+                                </span>
+                                <span class="article-stat">
+                                    <i class="fas fa-heart"></i>
+                                    178
+                                </span>
+                            </div>
+                            <a href="#" class="blog-card__link">
+                                Читать далее
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Article 5 -->
+                    <article class="blog-card" data-category="fitness" data-date="2024-04-10">
+                        <div class="blog-card__image">
+                            <img src="img/26.jpg" alt="Кардио vs силовые тренировки: что выбрать?" class="blog-card__img">
+                            <div class="blog-card__category">Фитнес</div>
+                        </div>
+                        <div class="blog-card__content">
+                            <div class="article-meta">
+                                <span class="article-date">10 апреля 2024</span>
+                                <span class="article-read-time">
+                                    <i class="fas fa-clock"></i>
+                                    9 мин
+                                </span>
+                            </div>
+                            <h3 class="blog-card__title">Кардио vs силовые тренировки: что выбрать?</h3>
+                            <p class="blog-card__excerpt">
+                                Разбираем различия между кардио и силовыми тренировками, 
+                                их влияние на организм и как правильно комбинировать оба типа нагрузок.
+                            </p>
+                            <div class="blog-card__stats">
+                                <span class="article-stat">
+                                    <i class="fas fa-eye"></i>
+                                    1,789
+                                </span>
+                                <span class="article-stat">
+                                    <i class="fas fa-heart"></i>
+                                    145
+                                </span>
+                            </div>
+                            <a href="#" class="blog-card__link">
+                                Читать далее
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Article 6 -->
+                    <article class="blog-card" data-category="nutrition" data-date="2024-04-08">
+                        <div class="blog-card__image">
+                            <img src="img/27.jpg" alt="Протеиновые коктейли: мифы и реальность" class="blog-card__img">
+                            <div class="blog-card__category">Питание</div>
+                        </div>
+                        <div class="blog-card__content">
+                            <div class="article-meta">
+                                <span class="article-date">8 апреля 2024</span>
+                                <span class="article-read-time">
+                                    <i class="fas fa-clock"></i>
+                                    5 мин
+                                </span>
+                            </div>
+                            <h3 class="blog-card__title">Протеиновые коктейли: мифы и реальность</h3>
+                            <p class="blog-card__excerpt">
+                                Развеиваем мифы о протеиновых добавках и рассказываем, 
+                                когда и как их правильно использовать для достижения целей.
+                            </p>
+                            <div class="blog-card__stats">
+                                <span class="article-stat">
+                                    <i class="fas fa-eye"></i>
+                                    1,456
+                                </span>
+                                <span class="article-stat">
+                                    <i class="fas fa-heart"></i>
+                                    98
+                                </span>
+                            </div>
+                            <a href="#" class="blog-card__link">
+                                Читать далее
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="blog-section__footer">
+                    <div class="pagination">
+                        <button class="pagination__btn pagination__btn--prev" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                            Назад
+                        </button>
+                        <div class="pagination__pages">
+                            <button class="pagination__page pagination__page--active">1</button>
+                            <button class="pagination__page">2</button>
+                            <button class="pagination__page">3</button>
+                            <span class="pagination__dots">...</span>
+                            <button class="pagination__page">8</button>
+                        </div>
+                        <button class="pagination__btn pagination__btn--next">
+                            Вперед
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="section newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <div class="newsletter-text">
+                        <h2 class="newsletter-title">Подпишитесь на обновления</h2>
+                        <p class="newsletter-description">
+                            Получайте новые статьи и советы прямо на вашу почту. 
+                            Никакого спама, только полезный контент.
+                        </p>
+                    </div>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <div class="newsletter-input-group">
+                            <input type="email" placeholder="Ваш email" class="newsletter-input" required>
+                            <button type="submit" class="btn btn--primary">
+                                <i class="fas fa-paper-plane"></i>
+                                Подписаться
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <div class="footer__brand">
+                        <h3 class="footer__logo">
+                            <span class="footer__logo-text">Beauty</span>Fitness
+                        </h3>
+                        <p class="footer__description">
+                            Ваш путь к здоровью и красоте начинается здесь
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="footer__section">
+                    <h4 class="footer__title">Навигация</h4>
+                    <ul class="footer__list">
+                        <li><a href="index.html" class="footer__link">Главная</a></li>
+                        <li><a href="fitness-classes.html" class="footer__link">Фитнес классы</a></li>
+                        <li><a href="personal-training.html" class="footer__link">Персональные тренировки</a></li>
+                        <li><a href="blog.html" class="footer__link">Блог</a></li>
+                        <li><a href="locations.html" class="footer__link">Локации</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__section">
+                    <h4 class="footer__title">Поддержка</h4>
+                    <ul class="footer__list">
+                        <li><a href="#" class="footer__link">FAQ</a></li>
+                        <li><a href="#" class="footer__link">Контакты</a></li>
+                        <li><a href="#" class="footer__link">Карьера</a></li>
+                        <li><a href="#" class="footer__link">Сообщество</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__section">
+                    <h4 class="footer__title">Контакты</h4>
+                    <div class="footer__contacts">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+380 66 567 10 18</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@beautyfitness.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Киев, Украина</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer__social">
+                        <h5 class="footer__social-title">Мы в соцсетях</h5>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <div class="footer__copyright">
+                    <p>&copy; 2024 BeautyFitness. Все права защищены.</p>
+                </div>
+                <div class="footer__legal">
+                    <a href="#" class="footer__link">Политика конфиденциальности</a>
+                    <a href="#" class="footer__link">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/forms.js"></script>
+    <script src="js/blog.js"></script>
+</body>
+</html> 
