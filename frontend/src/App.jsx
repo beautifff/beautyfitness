@@ -68,10 +68,13 @@ const Header = ({ currentPage, setCurrentPage, user, setUser, setShowAuthModal }
     <header className={`p-4 bg-gray-800 ${lightTextColor} ${shadow} sticky top-0 z-50`}>
       <nav className="container mx-auto flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <h1 className="text-3xl font-extrabold tracking-tight">
+          <button 
+            onClick={() => setCurrentPage('home')}
+            className="text-3xl font-extrabold tracking-tight hover:scale-105 transition-transform duration-200 cursor-pointer"
+          >
             <span className="text-white">Beauty</span>
             <span className="text-red-400">Fitness</span>
-          </h1>
+          </button>
         </div>
         
         <div className="hidden md:flex space-x-6 items-center">
@@ -298,25 +301,108 @@ const AuthModal = ({ type, onClose, onLogin }) => {
       }
     }
 
-    // Simulate API call
+    // REAL API CALL TO BACKEND
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const apiUrl = 'http://127.0.0.1:8000'; // Your backend URL
       
-      // Mock user data
-      const userData = {
-        id: Math.random().toString(36).substr(2, 9),
-        name: formData.name || formData.email.split('@')[0],
-        email: formData.email,
-        joinDate: new Date().toISOString().split('T')[0],
-        membershipType: 'Premium',
-        workoutsCompleted: type === 'login' ? Math.floor(Math.random() * 50) : 0,
-        currentStreak: type === 'login' ? Math.floor(Math.random() * 10) : 0
-      };
+      if (type === 'signup') {
+        // Register new user
+        const response = await fetch(`${apiUrl}/register`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            password: formData.password
+          })
+        });
 
-      onLogin(userData);
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.detail || 'Registration failed');
+        }
+
+        // After successful registration, log them in
+        const loginResponse = await fetch(`${apiUrl}/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password
+          })
+        });
+
+        const loginData = await loginResponse.json();
+        
+        if (!loginResponse.ok) {
+          throw new Error(loginData.detail || 'Login after registration failed');
+        }
+
+        // Store the token
+        localStorage.setItem('access_token', loginData.access_token);
+        
+        // Get user profile
+        const profileResponse = await fetch(`${apiUrl}/me`, {
+          headers: {
+            'Authorization': `Bearer ${loginData.access_token}`
+          }
+        });
+
+        const userData = await profileResponse.json();
+        
+        if (!profileResponse.ok) {
+          throw new Error('Failed to get user profile');
+        }
+
+        onLogin(userData);
+        
+      } else {
+        // Login existing user
+        const response = await fetch(`${apiUrl}/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password
+          })
+        });
+
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.detail || 'Login failed');
+        }
+
+        // Store the token
+        localStorage.setItem('access_token', data.access_token);
+        
+        // Get user profile
+        const profileResponse = await fetch(`${apiUrl}/me`, {
+          headers: {
+            'Authorization': `Bearer ${data.access_token}`
+          }
+        });
+
+        const userData = await profileResponse.json();
+        
+        if (!profileResponse.ok) {
+          throw new Error('Failed to get user profile');
+        }
+
+        onLogin(userData);
+      }
+      
       onClose();
     } catch (err) {
-      setError('Authentication failed. Please try again.');
+      console.error('Authentication error:', err);
+      setError(err.message || 'Authentication failed. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -1008,33 +1094,36 @@ const AiTrainerPage = () => {
     };
 
     try {
-      // Simulate a network delay to mimic the time it would take for a real API call.
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const token = localStorage.getItem('access_token');
+      if (!token) {
+        throw new Error('Please login to generate a fitness program');
+      }
 
-      const mockResponse = {
-        program: `
-          # Personalized 4-Week Training Plan
+      // REAL API CALL TO BACKEND
+      const response = await fetch('http://127.0.0.1:8000/generate-program', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(requestBody)
+      });
 
-          Congratulations on taking the first step towards your fitness goals! This plan is designed to help you **${requestBody.goal}** at an **${requestBody.fitness_level}** level, with a training frequency of **${requestBody.frequency}**.
+      const data = await response.json();
+      
+      if (!response.ok) {
+        if (response.status === 401) {
+          localStorage.removeItem('access_token');
+          throw new Error('Please login again to generate a fitness program');
+        }
+        throw new Error(data.detail || 'Failed to generate program');
+      }
 
-          ### Week 1: Foundation Building
-
-          **Day 1: Full Body Strength**
-          -   **Warm-up:** 5 minutes of light cardio (jumping jacks, jogging in place).
-          -   **Workout:**
-              -   Squats: 3 sets of 10 reps
-              -   Push-ups (on knees if needed): 3 sets of 8 reps
-              -   Lunges: 3 sets of 10 reps per leg
-              -   Plank: 3 sets, hold for 30 seconds
-          -   **Cool-down:** 5 minutes of stretching.
-        `
-      };
-
-      setGeneratedProgram(mockResponse.program);
+      setGeneratedProgram(data.program);
 
     } catch (err) {
-      console.error(err);
-      setError('Failed to generate program. Please try again.');
+      console.error('Generate program error:', err);
+      setError(err.message || 'Failed to generate program. Please try again.');
     } finally {
       setIsLoading(false);
     }
